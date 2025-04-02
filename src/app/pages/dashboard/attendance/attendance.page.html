@@ -1,0 +1,88 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/apps/dashboard"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Attendance</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+<ion-card>
+  <ion-card-header style="padding: 0rem;">
+    <div class="month-selector">
+      <ion-button fill="clear" (click)="prevMonth()">
+        <ion-icon name="caret-back-outline"></ion-icon>
+      </ion-button>
+      <h3>{{ currentMonth }} {{ currentYear }}</h3>
+      <ion-button fill="clear" (click)="nextMonth()">
+        <ion-icon name="caret-forward-outline"></ion-icon>
+      </ion-button>
+    </div>
+  </ion-card-header>
+  <ion-card-content>
+    <div class="calendar">
+      <div class="week-days">
+        <span *ngFor="let day of weekDays">{{ day }}</span>
+      </div>
+      <div class="days">
+        <div *ngFor="let day of calendarDays" [ngClass]="getDayClass(day)">
+          {{ day.date }}
+        </div>
+      </div>
+    </div>
+  </ion-card-content>
+</ion-card>
+
+
+<!-- Attendance Summary -->
+ <ion-grid>
+  <ion-row>
+    <ion-col>
+      <div class="summary-card present">Present <br> <b>{{ summary.present }}</b> Days</div>
+    </ion-col>
+    <ion-col>
+      <div class="summary-card absent">Absent <br> <b>{{ summary.absent }}</b> Days</div>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <div class="summary-card leave">Leave <br>  <b>{{ summary.leave }}</b> Days</div>
+    </ion-col>
+    <ion-col>
+      <div class="summary-card holiday">Holiday <br> <b>{{ summary.holiday }}</b> Days</div>
+    </ion-col>
+  </ion-row>
+ </ion-grid>
+
+<!-- Detailed Summary -->
+ <h3 style="padding-left: 10px;">Your Attendance Summary</h3>
+ <ion-grid style="    padding-left: 10px;
+    padding-right: 10px;">
+  <ion-row class="att-sum-ro">
+    <ion-col id="col" size="10">
+      Total Attendance Days
+    </ion-col>
+    <ion-col style="text-align: right; height: 60px;">
+      <div class="circle" id="c1">{{ summary.totalAttendance }}</div>
+    </ion-col>
+  </ion-row>
+  <ion-row class="att-sum-ro">
+    <ion-col id="col" size="10">
+      Total No. of Days Present
+    </ion-col>
+    <ion-col style="text-align: right; height: 60px;">
+      <div class="circle" id="c2">{{ summary.daysPresent }}</div>
+    </ion-col>
+  </ion-row>
+  <ion-row class="att-sum-ro">
+    <ion-col id="col" size="10">
+      Annual Percentage Till Current Date
+    </ion-col>
+    <ion-col style="text-align: right; height: 60px;">
+      <div class="circle" id="c3">{{ summary.annualPercentage }}</div>
+    </ion-col>
+  </ion-row>
+ </ion-grid>
+
+</ion-content>

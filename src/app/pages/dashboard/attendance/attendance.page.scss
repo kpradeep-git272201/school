@@ -1,0 +1,133 @@
+.month-selector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.calendar {
+  display: flex;
+  flex-direction: column;
+  // align-items: center;
+  margin-bottom: 10px;
+}
+
+.week-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  font-weight: bold;
+  text-align: center;
+  height: 40px;
+  border: 1px solid gray;
+  margin-bottom: 5px;
+  span {
+    line-height: 2.6;
+  }
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  text-align: center;
+}
+
+.days div {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: bold;
+  border: 1px solid #ccc;
+}
+
+.present {
+  background-color: #6fcf97;
+  color: #fff;
+}
+.absent {
+  background-color: #eb5757;
+  color: #fff;
+}
+.leave {
+  background-color: #f2c94c;
+  color: #fff;
+}
+.holiday {
+  background-color: #9b51e0;
+  color: #fff;
+}
+
+.summary-container {
+  display: flex;
+  flex-wrap: wrap;
+  // justify-content: space-around;
+  // margin: 15px 0;
+}
+
+.summary-card {
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  border: 1px solid #ccc;
+}
+
+.badge-success {
+  background-color: #27ae60;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+}
+.badge-warning {
+  background-color: #f2994a;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+}
+.badge-percentage {
+  background-color: #6c5ce7;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.att-sum-ro {
+    margin-bottom: 10px;
+  border: 1px solid gray;
+  border-radius: 7px;
+  height: 60px;
+  line-height: 2.7;
+  #col {
+    padding-left: 0.625rem;
+    font-size: 1.125rem;
+  }
+}
+.circle {
+  width: 51px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: bold;
+  border: 1px solid #ccc;
+}
+
+#c1 {
+   background-image: linear-gradient(to right, green, #a6f569);
+}
+#c2 {
+  background-image: linear-gradient(to right, red, yellow);
+}
+#c3 {
+  background-image: linear-gradient(to right, #9e09d9, #e3a7fa);
+}

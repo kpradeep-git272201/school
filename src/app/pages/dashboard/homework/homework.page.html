@@ -1,0 +1,109 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/apps/dashboard"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Homework</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-segment [(ngModel)]="selectedTab">
+    <ion-segment-button value="pending">
+      <ion-label>Pending</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="completed">
+      <ion-label>Completed</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ion-list *ngIf="selectedTab === 'pending'">
+    <ion-card *ngFor="let hw of pendingHomework" style="margin: 0.938rem;">
+      <ion-card-header [ngStyle]="{'background-color': hw.subjectColor, 'color': 'white'}" class="card-header">
+        <ion-card-title>
+          <ion-row style="height: 50px; line-height: 2.1;">
+          <ion-col class="subject">{{ hw.subject }}</ion-col>
+          <ion-col class="teacher">{{ hw.teacher }}</ion-col>
+          </ion-row>
+        </ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content style="padding: 0rem;">
+        <ion-grid>
+          <ion-row class="card-row">
+            <ion-col><strong>Title:</strong></ion-col>
+            <ion-col>{{ hw.title }}</ion-col>
+          </ion-row>
+          <ion-row class="card-row">
+            <ion-col><strong>Assigned On:</strong></ion-col>
+            <ion-col>{{ hw.assignedOn }}</ion-col>
+          </ion-row>
+          <ion-row class="card-row">
+            <ion-col><strong>Due On:</strong></ion-col>
+            <ion-col>{{ hw.dueOn || 'N/A' }}</ion-col>
+          </ion-row>
+          <ion-row class="card-row">
+            <ion-col><strong>Attached File:</strong></ion-col>
+            <ion-col><a *ngIf="hw.attachment" href="#">Download</a></ion-col>
+          </ion-row>
+          <ion-row class="card-row">
+            <ion-col><strong>Description:</strong></ion-col>
+            <ion-col>{{ hw.description }}</ion-col>
+          </ion-row>
+          <ion-row class="card-row">
+            <ion-col><strong>Status:</strong></ion-col>
+            <ion-col style="text-align: right;">
+              <ion-button color="warning">Pending</ion-button>
+            </ion-col>
+            <ion-col style="text-align: right;">
+              <ion-button>Submit</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+
+  <ion-list *ngIf="selectedTab === 'completed'">
+    <ion-card *ngFor="let hw of completedHomework" style="margin: 0.938rem;">
+      <ion-card-header [ngStyle]="{'background-color': hw.subjectColor, 'color': 'white'}" class="card-header">
+        <ion-card-title>
+          <ion-row style="height: 50px; line-height: 2.1;">
+          <ion-col class="subject">{{ hw.subject }}</ion-col>
+          <ion-col class="teacher">{{ hw.teacher }}</ion-col>
+          </ion-row>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content style="padding: 0rem;">
+        <ion-grid>
+          <ion-row class="card-row">
+            <ion-col><strong>Title:</strong></ion-col>
+            <ion-col>{{ hw.title }}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col><strong>Assigned On:</strong></ion-col>
+            <ion-col>{{ hw.assignedOn }}</ion-col>
+          </ion-row>
+          <ion-row class="card-row">
+            <ion-col><strong>Due On:</strong></ion-col>
+            <ion-col>{{ hw.dueOn || 'N/A' }}</ion-col>
+          </ion-row>
+  
+          <ion-row class="card-row">
+            <ion-col><strong>Description:</strong></ion-col>
+            <ion-col>{{ hw.description }}</ion-col>
+          </ion-row>
+          <ion-row class="card-row">
+            <ion-col><strong>Status:</strong></ion-col>
+            <ion-col style="text-align: right;">
+              <ion-button class="completed">Completed</ion-button>
+            </ion-col>
+            <ion-col style="text-align: right;">
+              <ion-button>Submit</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+</ion-content>

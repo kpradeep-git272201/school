@@ -1,0 +1,79 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+@import "bootstrap/dist/css/bootstrap.min.css";
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/**
+ * Ionic Dark Mode
+ * -----------------------------------------------------
+ * For more info, please see:
+ * https://ionicframework.com/docs/theming/dark-mode
+ */
+
+/* @import "@ionic/angular/css/palettes/dark.always.css"; */
+/* @import "@ionic/angular/css/palettes/dark.class.css"; */
+@import "@ionic/angular/css/palettes/dark.system.css";
+
+:root {
+  --primary-color: #563d7c;
+  --secondary-color: #9d0054;
+  --primary-font-color: #ffffff;
+  --over-layer-color: rgba(190, 186, 186, 0.8);
+  --rem-to-px: 10px;
+  --overdue-bg-color: #ff5151;
+  --incomplete-bg-color: #ff9800;
+  --upcoming-bg-color: #d5b60a;
+  --incomplete-badge-bg-color: #f57c00;
+  --overdue-badge-bg-color: #e53935;
+  --upcoming-badge-bg-color: #a6860a;
+  --overdue-badge-txt-color: #000000;
+  --incomplete-badge-txt-color: #000000;
+  --upcoming-badge-txt-color: #000000;
+  --my-theme-bg: #2c3e50;
+}
+
+
+ion-header {
+  --box-shadow: none !important;
+  --border-width: 0 !important;
+  box-shadow: none !important;
+  border-bottom: none !important;
+  padding-top: env(safe-area-inset-top);
+}
+ion-toolbar{
+  --background: var(--ion-color-primary) !important;
+}
+
+ion-menu-button{
+  color: white; 
+  font-size: 1.875rem;
+}
+
+ion-title{
+  color: white;
+}
+ion-back-button{
+  color: white;
+}

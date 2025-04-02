@@ -1,0 +1,29 @@
+.card-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.subject {
+  font-weight: bold;
+  width: 50%;
+  text-align: left;
+  padding-left: 10px;
+}
+
+.teacher {
+  font-size: 14px;
+  font-weight: normal;
+  width: 50%;
+  text-align: right;
+  line-height: 3;
+  padding-right: 10px;
+}
+
+.card-row{
+    font-size: 16px;
+    // height: 40px;
+    // line-height: 2.1;
+}
+.completed{
+    --background:var(--ion-color-btn) !important;
+}

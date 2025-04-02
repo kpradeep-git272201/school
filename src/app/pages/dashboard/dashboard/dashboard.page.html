@@ -1,0 +1,175 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button style="color: white; font-size: 1.875rem;"></ion-menu-button>
+    </ion-buttons>
+    <ion-title style="color: white;">Dashboard</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon class="notifications" name="notifications-outline"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="dashboard-content">
+  
+
+  <!-- School Updates -->
+  <ion-card>
+    <div class="section">
+      <div class="icon-grid">
+        <ion-item class="custom-avatar-item list">
+          <ion-avatar slot="start" class="custom-avatar">
+            <img src="assets/images/dashboard/profile.jpg" alt="Student"/>
+          </ion-avatar>
+          <ion-label style="font-size: 1.25rem;">Demu Student</ion-label>
+        </ion-item>
+      </div>
+    </div>
+  </ion-card>
+
+  <!-- Academics -->
+  
+  <div class="section">
+    <div class="icon-grid">
+      <ion-row class="centered-icons">
+        <ion-col size="4" (click)="markAttendance()">
+          <ion-card class="card">
+            <ion-card-header>
+              <img src="assets/images/dashboard/attendance.jpg" />
+            </ion-card-header>
+          
+            <ion-card-content>
+              <p>Mark your attendance</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col size="4">
+          <ion-card class="card">
+            <ion-card-header>
+              <img src="assets/images/dashboard/student_attendance.jpg" />
+            </ion-card-header>
+          
+            <ion-card-content>
+              <p>Student attendance</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col size="4">
+          <ion-card class="card">
+            <ion-card-header>
+              <img src="assets/images/dashboard/uploadhomework.jpg" />
+            </ion-card-header>
+          
+            <ion-card-content>
+              <p>Upload Homework</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+
+  <div class="icon-grid">
+    <ion-row class="centered-icons">
+      <ion-col size="4">
+        <ion-card class="card">
+          <ion-card-header>
+            <img src="assets/images/dashboard/uploadclasswork.jpg" />
+          </ion-card-header>
+        
+          <ion-card-content>
+            <p>Upload Classwork</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size="4">
+        <ion-card class="card">
+          <ion-card-header>
+            <img src="assets/images/dashboard/uploadassignment.jpg" />
+          </ion-card-header>
+        
+          <ion-card-content>
+            <p>Upload Assignment</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size="4">
+        <ion-card class="card">
+          <ion-card-header>
+            <img src="assets/images/dashboard/seehw.jpg" />
+          </ion-card-header>
+        
+          <ion-card-content>
+            <p>See Homework</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <div class="section">
+    <div class="icon-grid">
+      <ion-row class="centered-icons">
+        <ion-col size="4">
+          <ion-card class="card">
+            <ion-card-header>
+              <img src="assets/images/dashboard/seeClasswork.jpg" />
+            </ion-card-header>
+          
+            <ion-card-content>
+              <p>See Classwork</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col size="4">
+          <ion-card class="card">
+            <ion-card-header>
+              <img src="assets/images/dashboard/attendanceLog.jpg" />
+            </ion-card-header>
+          
+            <ion-card-content>
+              <p>Attendance Logs</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col size="4">
+          <ion-card class="card">
+            <ion-card-header style="height: 7.25rem;">
+              <img src="assets/images/dashboard/up.jpg" />
+            </ion-card-header>
+          
+            <ion-card-content>
+              <p>Upcoming!</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+
+  
+</ion-content>
+
+<!-- Footer -->
+<ion-footer>
+  <ion-toolbar>
+    <ion-tab-bar>
+      <ion-tab-button tab="home">
+        <ion-icon name="home-outline"></ion-icon>
+        <ion-label>Home</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="assignment">
+        <ion-icon name="document-outline"></ion-icon>
+        <ion-label>Assignment</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="homework">
+        <ion-icon name="book-outline"></ion-icon>
+        <ion-label>Homework</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="fee">
+        <ion-icon name="card-outline"></ion-icon>
+        <ion-label>Pay Fee</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-toolbar>
+</ion-footer>

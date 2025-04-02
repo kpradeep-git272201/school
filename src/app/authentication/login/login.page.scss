@@ -1,0 +1,43 @@
+/* Background Image */
+.bgImg {
+  --background: url("/assets/background/backgroundimage.avif") no-repeat center
+    center / cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Card Styling */
+.card {
+  border-radius: 12px;
+  padding: 25px;
+}
+
+/* Logo - Centered & Larger */
+.logo-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+/* Login Button */
+.login-btn {
+  --background: var(--ion-color-primary);
+  --color: white;
+  font-size: 1.2rem;
+  height: 3.125rem;
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 48rem) {
+  .app-logo {
+    width: 9.375rem; /* Slightly Smaller for Mobile */
+  }
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
