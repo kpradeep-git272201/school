@@ -2,7 +2,7 @@
   <div
     class="container d-flex justify-content-center align-items-center min-vh-100"
   >
-    <div class="row w-100">
+    <div *ngIf="loginTemplate" class="row w-100">
       <div class="col-md-10 col-lg-6 mx-auto">
         <div class="card shadow-lg">
           <div class="card-body text-center p-1">
@@ -47,6 +47,34 @@
           </div>
           <p class="pb-lg-2 pt-3" style="text-align: center;">Don't have an account? <a
             style="color: #393f81;" (click)="getSignIn()">Sign In</a></p>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="signInTemplate" class="row w-100">
+      <div class="col-md-10 col-lg-6 mx-auto">
+        <div class="card shadow-lg">
+          <div class="card-body text-center p-1">
+            <!-- Centered Logo -->
+            <div class="logo-container">
+              <img src="assets/images/app_logo/app_logo.jpg" alt="Student School Logo" class="app-logo"/>
+            </div>
+
+            <h4 class="fw-bold mb-3">Sign into your account</h4>
+
+            <form>
+              <div class="form-group">
+                <ion-input type="email" placeholder="Email address" class="form-control mb-3"></ion-input>
+              </div>
+
+              <div class="form-group">
+                <ion-input type="password" placeholder="Password" class="form-control mb-3"></ion-input>
+              </div>
+
+              <ion-button expand="block" class="login-btn">Sign In</ion-button>
+            </form>
+          </div>
+          <p class="pb-lg-2 pt-3" style="text-align: center;">Have an account? <a
+            style="color: #393f81;" (click)="goToLogin()">Login</a></p>
         </div>
       </div>
     </div>

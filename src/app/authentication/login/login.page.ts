@@ -13,6 +13,8 @@ import { DatabaseService } from 'src/app/services/database.service';
 export class LoginPage implements OnInit {
   loginForm: FormGroup;
   registeredStudent: any = [];
+  loginTemplate:boolean=true;
+  signInTemplate:boolean=false;
   constructor(
     private router: Router,
     private databaseService: DatabaseService
@@ -62,6 +64,13 @@ export class LoginPage implements OnInit {
   
 
   getSignIn(){
-    this.router.navigate(["/auth/sign-in"])
+    // this.router.navigate(["/auth/sign-in"])
+    this.signInTemplate=true;
+    this.loginTemplate=false;
+  }
+
+  goToLogin(){
+    this.loginTemplate=true;
+    this.signInTemplate=false;
   }
 }
