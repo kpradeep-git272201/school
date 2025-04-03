@@ -3,7 +3,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { ViewChild, ElementRef } from '@angular/core';
 import * as blazeface from '@tensorflow-models/blazeface';
 import '@tensorflow/tfjs';
-import Long from "long";
+import { Camera, CameraResultType, CameraSource, CameraDirection } from '@capacitor/camera';
+import * as tf from '@tensorflow/tfjs';
+
 
 @Component({
   selector: 'app-mark-attendance',
@@ -11,78 +13,98 @@ import Long from "long";
   styleUrls: ['./mark-attendance.page.scss'],
   standalone: true,
   imports: [SharedModule]
-  
+
 })
 export class MarkAttendancePage implements OnInit {
-  // @ViewChild('video', { static: false }) videoElement!: ElementRef;
-  // @ViewChild('canvas', { static: false }) canvasElement!: ElementRef;
-  // blinkCount = 0;
+  @ViewChild('video', { static: false }) videoElement!: ElementRef;
+  @ViewChild('canvas', { static: false }) canvasElement!: ElementRef;
+  blinkCount = 0;
+  isBlinkDetected = false;
+
+
+  capturedImage: string | null = null;
+
+
   constructor() { }
 
 
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
+  ngOnInit() {
+    //  this.openCamera();
   }
 
-  
-  // async startCamera() {
-  //   const video = this.videoElement.nativeElement as HTMLVideoElement;
-  //   const canvas = this.canvasElement.nativeElement as HTMLCanvasElement;
-  //   const ctx = canvas.getContext('2d')!;
+  /*********************************************************************************************************************************** */
 
-  //   // Open Camera
-  //   navigator.mediaDevices
-  //     .getUserMedia({ video: { facingMode: 'user' } })
-  //     .then((stream) => {
-  //       video.srcObject = stream;
-  //       video.play();
-  //       this.detectBlink(video, ctx);
-  //     })
-  //     .catch((error) => console.error('Error accessing camera:', error));
-  // }
 
-  // async detectBlink(video: HTMLVideoElement, ctx: CanvasRenderingContext2D) {
-  //   const model = await blazeface.load();
+  async ngAfterViewInit() {
+    await this.setupCamera();
+    this.detectBlinks();
+  }
 
-  //   setInterval(async () => {
-  //     let predictions:any = await model.estimateFaces(video, false);
-  //     if (predictions.length > 0) {
-  //       const eye = predictions[0].landmarks.slice(0, 2); // Eye landmarks
-  //       const eyeDistance = Math.abs(eye[0][1] - eye[1][1]);
+  async setupCamera() {
+    const video = this.videoElement.nativeElement as HTMLVideoElement;
 
-  //       if (eyeDistance < 5) {
-  //         this.blinkCount++;
-  //         console.log('Blink Detected:', this.blinkCount);
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } })
+      .then(stream => video.srcObject = stream)
+      .catch(err => console.error("Camera Error:", err));
+  }
 
-  //         if (this.blinkCount >= 2) {
-  //           this.captureImage(video, ctx);
-  //           this.blinkCount = 0;
-  //         }
-  //       }
-  //     }
-  //   }, 300);
-  // }
+  async detectBlinks() {
+    const model = await blazeface.load();
+    const video = this.videoElement.nativeElement as HTMLVideoElement;
 
-  // captureImage(video: HTMLVideoElement, ctx: CanvasRenderingContext2D) {
-  //   ctx.drawImage(video, 0, 0, 300, 300);
-  //   const base64Image = this.canvasElement.nativeElement.toDataURL('image/png');
+    setInterval(async () => {
+      if (!video || video.readyState !== 4) return;
 
-  //   // Send Image to Server
-  //   this.sendImageToServer(base64Image);
-  // }
+      let predictions: any = await model.estimateFaces(video, false);
+      if (predictions.length > 0) {
+        const leftEye = predictions[0]?.annotations.leftEyeUpper0;
+        const rightEye = predictions[0]?.annotations.rightEyeUpper0;
 
-  // async sendImageToServer(base64Image: string) {
-  //   const response = await fetch('https://yourserver.com/api/upload', {
-  //     method: 'POST',
-  //     headers: { 'Content-Type': 'application/json' },
-  //     body: JSON.stringify({ image: base64Image }),
-  //   });
+        if (this.isEyeClosed(leftEye) && this.isEyeClosed(rightEye)) {
+          this.blinkCount++;
+          console.log(`Blink Count: ${this.blinkCount}`);
 
-  //   if (response.ok) {
-  //     console.log('Image uploaded successfully');
-  //   } else {
-  //     console.error('Failed to upload image');
-  //   }
-  // }
- 
+          if (this.blinkCount === 2) {
+            this.isBlinkDetected = true;
+            console.log("Blink detected! Capturing image...");
+            this.captureImage(); 
+          }
+        }
+      }
+    }, 500);
+  }
+
+  isEyeClosed(eyePoints: any[]): boolean {
+    const eyeHeight = Math.abs(eyePoints[4][1] - eyePoints[0][1]);
+    return eyeHeight < 5; 
+  }
+
+  captureImage() {
+    const canvas = this.canvasElement.nativeElement as HTMLCanvasElement;
+    const video = this.videoElement.nativeElement as HTMLVideoElement;
+    const ctx = canvas.getContext('2d');
+
+    if (ctx) {
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+      console.log("Image Captured!");
+    }
+  }
+  async openCamera() {
+    try {
+      const image = await Camera.getPhoto({
+        source: CameraSource.Camera,
+        resultType: CameraResultType.Uri,
+        direction: CameraDirection.Front,
+        quality: 90,
+      });
+
+      console.log("Image Captured:", image.webPath);
+      this.capturedImage = image.webPath;
+    } catch (error) {
+      console.error("Camera Error:", error);
+    }
+  }
+
+  /*********************************************************************************************************************************** */
+
 }
