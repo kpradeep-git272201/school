@@ -8,19 +8,12 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <video #videoElement autoplay></video>
-
-  <div *ngIf="imageCaptured">
-    <img [src]="imageCaptured" />
-    <ion-button (click)="blinkDetected = false">Retake</ion-button>
-  </div>
-  
-  <!-- <div class="camera-container">
+  <div class="camera-container">
     <video #videoElement autoplay playsinline></video>
     <canvas #canvasElement></canvas>
     <div class="overlay-circle"></div>
   </div>
   <ion-button expand="block" [disabled]="!isBlinkDetected" id="proceedBtn" (click)="proceed()">
     Proceed
-  </ion-button> -->
+  </ion-button>
 </ion-content>
